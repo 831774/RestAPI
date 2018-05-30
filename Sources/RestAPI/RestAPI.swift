@@ -1,6 +1,6 @@
 import Foundation
 
-class GenericAPI: Restful {
+public class GenericAPI: Restful {
 
   //MARK: Properties
   public let config: Configuration
