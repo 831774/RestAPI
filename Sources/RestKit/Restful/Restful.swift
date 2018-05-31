@@ -25,7 +25,7 @@ extension Restful {
     task.resume()
   }
 
-  public func model<Model: Decodable>(_ call: Call, model: Model.Type, callback: @escaping (Model) -> Void) {
+  public func object<Model: Decodable>(_ call: Call, model: Model.Type, callback: @escaping (Model) -> Void) {
     let request = self.request(using: call)
     send(request) { responseData in
       do {
@@ -47,8 +47,12 @@ extension Restful {
   public func rawJSON(_ call: Call, callback: @escaping (Any?) -> Void) {
     let request = self.request(using: call)
     send(request) { responseData in
-      let json = try? JSONSerialization.jsonObject(with: responseData)
-      callback(json)
+      do {
+        let json = try JSONSerialization.jsonObject(with: responseData)
+        callback(json)
+      } catch {
+        print("JSON Serialization error: \(error)")
+      }
     }
   }
   //query with leading question mark (for actual use in a path)
