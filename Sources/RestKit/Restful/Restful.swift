@@ -15,13 +15,7 @@ extension Restful {
       data, response, error in
 
       if let error = error { print(error) }
-      if let data = data {
-        if let errorMessage = Error.check(data) {
-          errorMessage.display()
-        } else {
-          dataReceived(data)
-        }
-      }
+      if let data = data { dataReceived(data) }
       if let response = response {
         if self.config.useDebugging { print(response) }
       }
@@ -38,7 +32,7 @@ extension Restful {
         let result = try JSONDecoder().decode(model, from: responseData)
         callback(result)
       } catch {
-        print("Error: \(error)")
+        print("Decoding Error: \(error)")
       }
     }
   }
