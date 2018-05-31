@@ -6,6 +6,9 @@ public class RestAPI: Restful {
   public var config = Configuration.standard
   public let session = URLSession.shared
 
+  //MARK: Initializer
+  public init() {}
+
   //MARK: Methods
   public func request(using call: Call) -> URLRequest {
     let path = call.host + call.endpoint + fullQuery(from: call.options)
