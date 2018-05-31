@@ -31,12 +31,16 @@ extension Restful {
     task.resume()
   }
 
-  public func model<Model: Decodable>(_ call: Call, model: Model.Type, callback: @escaping (Model?) -> Void) {
+  public func model<Model: Decodable>(_ call: Call, model: Model.Type, callback: @escaping (Model) -> Void) {
     let request = self.request(using: call)
     send(request) { responseData in
       do {
         let result = try JSONDecoder().decode(model, from: responseData)
-        callback(result)
+        if let result = result {
+            callback(result)
+        } else {
+          print("No data.")
+        }
       } catch {
         print("Error: \(error)")
       }
