@@ -36,11 +36,7 @@ extension Restful {
     send(request) { responseData in
       do {
         let result = try JSONDecoder().decode(model, from: responseData)
-        if let result = result {
-            callback(result)
-        } else {
-          print("No data.")
-        }
+        callback(result)
       } catch {
         print("Error: \(error)")
       }
