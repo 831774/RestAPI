@@ -3,13 +3,8 @@ import Foundation
 public class RestAPI: Restful {
 
   //MARK: Properties
-  public let config: Configuration
-  public let session: URLSession = URLSession.shared
-
-  //MARK: Initializer
-  public init(with config: Configuration) {
-    self.config = config
-  }
+  public var config = Configuration.standard
+  public let session = URLSession.shared
 
   //MARK: Methods
   public func request(using call: Call) -> URLRequest {

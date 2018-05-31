@@ -3,8 +3,13 @@ import Foundation
 public struct Configuration: Codable {
 
   //MARK: Properties
-  public let useDebugging: Bool
-  public let showStatusCode: Bool
-  public let publicKey: String
-  public let secretKey: String
+  public var useDebugging: Bool
+  public var showStatusCode: Bool
+  public var publicKey: String
+  public var secretKey: String
+
+  public static var standard: Configuration {
+    let result = Configuration(useDebugging: false, showStatusCode: false, publicKey: "", secretKey: "")
+    return result
+  }
 }
